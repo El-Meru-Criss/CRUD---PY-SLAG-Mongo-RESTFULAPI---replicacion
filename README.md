@@ -4,7 +4,7 @@ Implementacin de mongo, python, slag y restful API con replicacion
 <center>
   <h1>MARCO TEÓRICO</h1>
   <h2>Rest</h2>
-  Rest es una lógica de comunicación como lo expone (Azabache, 2021):
+  Rest es una lógica de comunicación como lo expone <a href="https://bravedeveloper.com/2021/09/01/que-es-rest-restful-api-restful-y-json/">(Azabache, 2021)</a>:
 Sus siglas vienen de Representational State Transfer, es un estilo de arquitectura de software para realizar una comunicación cliente-servidor. Se apoya en el protocolo HTTP para la comunicación al servidor y los mensajes que se envían y reciben pueden estar en XML o JSON del cual abordaremos más abajo.
 Utiliza peticiones que son llamados como verbos como son los siguientes: GET, POST, PUT y DELETE.
 <h2>API</h2>
