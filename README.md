@@ -13,7 +13,7 @@ Utiliza peticiones que son llamados como verbos como son los siguientes: GET, PO
   Una API es una forma de interactuar con un sistema, así como lo expone <a href="https://bravedeveloper.com/2021/09/01/que-es-rest-restful-api-restful-y-json/" target="_blank">(Azabache, 2021)</a>: 
 Un API es un conjunto de funcionalidades o recursos que nos expone un sistema para poder interactuar con él desde otro sistema, esto sin importar ni los lenguajes de programación en que cada uno de ellos esté escrito ni la tecnología ni nada, y esto es gracias a que trabaja con una capa de abstracción
   <h2>Python:</h2>
-Basándose en la información de <a href="https://aws.amazon.com/es/what-is/python/">(Amazon Web Services, Inc., n.d.)</a>:
+Basándose en la información de <a href="https://aws.amazon.com/es/what-is/python/" target="_blank">(Amazon Web Services, Inc., n.d.)</a>:
 Python es un lenguaje de programación gratuito, eficiente y fácil de aprender; muy útil en la programación web, desarrollo de software y machine learning. 
   <h2>Flask(python):</h2>
   “Flask es un “micro” Framework escrito en Python y concebido para facilitar el desarrollo de Aplicaciones Web bajo el patrón MVC.” <a href="https://openwebinars.net/blog/que-es-flask/" target="_blank">(Muñoz, 2017)</a> esto para facilitar el desarrollo del CRUD y agiliza el desarrollo
