@@ -12,6 +12,9 @@ Utiliza peticiones que son llamados como verbos como son los siguientes: GET, PO
 Un API es un conjunto de funcionalidades o recursos que nos expone un sistema para poder interactuar con él desde otro sistema, esto sin importar ni los lenguajes de programación en que cada uno de ellos esté escrito ni la tecnología ni nada, y esto es gracias a que trabaja con una capa de abstracción
 <h2>RESTFUL API</h2>
   Rest es la lógica y API es el método para interactuar con un sistema. Un RESTFUL API es la implementación de estos dos conceptos, aplicando la lógica del REST en los medios de comunicación API
+  <h2>Python:</h2>
+Basándose en la información de (Amazon Web Services, Inc., n.d.):
+Python es un lenguaje de programación gratuito, eficiente y fácil de aprender; muy útil en la programación web, desarrollo de software y machine learning. 
   <h2>Flask(python):</h2>
   “Flask es un “micro” Framework escrito en Python y concebido para facilitar el desarrollo de Aplicaciones Web bajo el patrón MVC.” <a href="https://openwebinars.net/blog/que-es-flask/">(Muñoz, 2017)</a> esto para facilitar el desarrollo del CRUD y agiliza el desarrollo
  <h2>MongoDB:</h2> 
