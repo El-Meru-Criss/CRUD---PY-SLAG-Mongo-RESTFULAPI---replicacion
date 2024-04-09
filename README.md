@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CRUD---PY-SLAG-Mongo-RESTFULAPI---replicacion
 Implementacin de mongo, python, slag y restful API con replicacion
 <br>
@@ -30,3 +31,7 @@ Muñoz, J. D. (2017, November 17). Qué es Flask y ventajas que ofrece. OpenWebi
 Postman, Inc. (n.d.). Postman API Platform | Sign Up for Free. Retrieved April 5, 2024, from https://www.postman.com/<br>
 Amazon Web Services, Inc. (n.d.). ¿Qué es Python? - Explicación del lenguaje Python - AWS. Amazon AWS. Retrieved April 6, 2024, from https://aws.amazon.com/es/what-is/python/
 </center>
+=======
+<h1>Criss ---------------------------------------------</h1>
+Espacio de trabajo del criss
+>>>>>>> ac48f3b28c1c2c80b927c14dc72b30a317a7f720
