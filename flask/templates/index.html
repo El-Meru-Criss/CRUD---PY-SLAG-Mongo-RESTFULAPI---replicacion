@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Definimos la codificación de caracteres y la escala inicial para dispositivos móviles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El título de la página se toma del diccionario 'data' que se pasa desde la aplicación Flask -->
     <title>{{ data.titulo }}</title>
 </head>
 <body>
+    <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
     <h1>{{ data.tabla }}</h1>
+    
+    <!-- Comprobamos si hay nombres en la lista -->
+    {% if data.numero_nombres > 0 %}
+    <!-- Si hay nombres, mostramos una lista no ordenada con los nombres -->
     <ul>
         {% for c in data.nombres %}
         <li>
+            <!-- Mostramos cada nombre en un elemento de lista -->
             {{ c }}
         </li>
         {% endfor %}
     </ul>
+    <!-- Si no hay nombres en la lista, mostramos un mensaje -->
+    {% else %}
+    <h2>No existen nombres</h2>
+    {% endif %}
 </body>
 </html>
