@@ -2,7 +2,9 @@
 Para hacer que realice los cambios, debe estar conectado a la BD
 por medio de la extension de VS 
 El usuario es: El-Meru-Criss
-pass: 12345*/
+pass: 12345
+URL: mongodb+srv://El-Meru-Criss:<password>@pruebas-criss.neht1oe.mongodb.net/
+*/
 
 // Aqui seleccionamos la base de datos que vamos a utilizar
 use('empleados'); //Nombre de la BD
