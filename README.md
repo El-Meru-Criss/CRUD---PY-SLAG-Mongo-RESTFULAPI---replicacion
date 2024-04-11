@@ -44,3 +44,34 @@ Creamos una instancia de MongoClient y nos conectamos a la base de datos especif
     app = Flask(__name__)
     
 Creamos una instancia de la clase Flask y la asignamos a la variable app.
+
+<h2>Ruta principal '/':</h2>
+
+    @app.route('/')
+    def index():
+      # Código para consultar la información de todos los empleados de la base de datos
+      # Creación del diccionario 'data' con varios datos, incluyendo la tabla de empleados
+      # Renderización de la plantilla HTML 'index.html' con el diccionario 'data' como contexto
+      return render_template('index.html', data=data)
+      
+Definimos una ruta principal / utilizando el decorador @app.route('/'). Cuando se accede a esta ruta, se ejecuta la función index(), que consulta la información de todos los empleados de la base de datos, crea un diccionario data con varios datos (incluyendo la tabla de empleados obtenida de la base de datos) y luego renderiza la plantilla HTML index.html con este diccionario como contexto.
+
+<h3>ejemplo de la ruta principal</h3>
+
+    @app.route('/')
+    def index():
+      # Consultar información de todos los empleados
+      empleados = db["empleado"].find()
+
+      # Creamos un diccionario 'data' con varios datos
+      data = {
+        'titulo': 'index',                # Título de la página
+        'tabla': 'tabla',                 # Nombre de la tabla (aunque aquí no está siendo utilizado)
+        'empleados': empleados,           # Tabla de empleados obtenida de la base de datos
+        'num_empleados': db["empleado"].count_documents({}) # Número de empleados en la tabla
+      }
+
+    # Renderizamos la plantilla HTML 'index.html' y pasamos el diccionario 'data' como contexto
+    return render_template('index.html', data=data)
+
+asi es como queda la parte de la ruta princial en nuestra aplicacion
