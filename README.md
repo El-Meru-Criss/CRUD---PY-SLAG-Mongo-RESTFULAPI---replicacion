@@ -12,7 +12,7 @@ Implementacin de mongo, python, slag y restful API con replicacion
   
 Importamos las clases necesarias de Flask (Flask, render_template, redirect, url_for) y de pymongo (MongoClient) para interactuar con MongoDB desde nuestra aplicación Flask.
 
-    Datos de conexión a MongoDB:
+<h2>Datos de conexión a MongoDB:</h2>
 
     usuario = "El-Meru-Criss"
     contraseña = "12345"
