@@ -31,3 +31,9 @@ Definimos los datos de conexión a MongoDB, incluyendo el nombre de usuario, con
     db = cliente[nombre_bd]
 
 Creamos una instancia de MongoClient y nos conectamos a la base de datos especificada en la URL de conexión.
+
+<h2>Creación de la aplicación Flask:</h2>
+
+    app = Flask(__name__)
+    
+Creamos una instancia de la clase Flask y la asignamos a la variable app.
