@@ -3,7 +3,14 @@
 Implementacin de mongo, python, slag y restful API con replicacion
 <h1>Rama de Brayan</h1>
   En esta rama se aportaran los avances de brayan con todo lo relacionado a flask
-</center> 
+</center>
+
+<h2>instalamos las librerias</h2>
+
+    pip install flask
+    pip install pymongo
+
+instalamos primero las librerias necesarias para el funcionamiento de la aplicacion
 
 <h2>Importaciones:</h2>
 
