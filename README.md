@@ -11,3 +11,15 @@ Implementacin de mongo, python, slag y restful API con replicacion
     from pymongo import MongoClient
   
 Importamos las clases necesarias de Flask (Flask, render_template, redirect, url_for) y de pymongo (MongoClient) para interactuar con MongoDB desde nuestra aplicación Flask.
+
+    Datos de conexión a MongoDB:
+
+    usuario = "El-Meru-Criss"
+    contraseña = "12345"
+    host = "pruebas-criss.neht1oe.mongodb.net"
+    puerto = 27017
+    nombre_bd = "empleados"
+
+    url_conexion = f"mongodb+srv://{usuario}:{contraseña}@{host}/{nombre_bd}"
+    
+Definimos los datos de conexión a MongoDB, incluyendo el nombre de usuario, contraseña, host, puerto y nombre de la base de datos. Luego, construimos la URL de conexión utilizando estos datos.
