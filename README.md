@@ -56,7 +56,7 @@ Creamos una instancia de la clase Flask y la asignamos a la variable app.
       
 Definimos una ruta principal / utilizando el decorador @app.route('/'). Cuando se accede a esta ruta, se ejecuta la función index(), que consulta la información de todos los empleados de la base de datos, crea un diccionario data con varios datos (incluyendo la tabla de empleados obtenida de la base de datos) y luego renderiza la plantilla HTML index.html con este diccionario como contexto.
 
-<h3>ejemplo de la ruta principal</h3>
+<h3>ejemplo de la ruta principal:</h3>
 
     @app.route('/')
     def index():
