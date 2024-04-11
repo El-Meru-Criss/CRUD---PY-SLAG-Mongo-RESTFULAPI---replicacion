@@ -23,3 +23,11 @@ Importamos las clases necesarias de Flask (Flask, render_template, redirect, url
     url_conexion = f"mongodb+srv://{usuario}:{contraseña}@{host}/{nombre_bd}"
     
 Definimos los datos de conexión a MongoDB, incluyendo el nombre de usuario, contraseña, host, puerto y nombre de la base de datos. Luego, construimos la URL de conexión utilizando estos datos.
+
+<h2>Conexión a MongoDB:</h2>
+
+
+    cliente = MongoClient(url_conexion)
+    db = cliente[nombre_bd]
+
+Creamos una instancia de MongoClient y nos conectamos a la base de datos especificada en la URL de conexión.
