@@ -75,3 +75,32 @@ Definimos una ruta principal / utilizando el decorador @app.route('/'). Cuando s
     return render_template('index.html', data=data)
 
 asi es como queda la parte de la ruta princial en nuestra aplicacion
+
+<h2>Manejo de error 404:</h2>
+
+    def pagina_no_encontrada(error):
+      return redirect(url_for('index'))
+
+    app.register_error_handler(404, pagina_no_encontrada)
+    
+Se define la función pagina_no_encontrada para manejar el error 404 y se registra esta función para el manejo de este error.
+
+<h2>Ejecución de la aplicación:</h2>
+
+    if __name__ == '__main__':
+      app.run(debug=True)
+      
+Se inicia el servidor Flask en modo de depuración si el script se ejecuta directamente.
+
+<h3>ejemplo de la ejecucion y manejo del error 404:</h3>
+
+    def pagina_no_encontrada(error):
+      return redirect(url_for('index'))
+
+    # Bloque que ejecuta la aplicación solo si el script se ejecuta directamente (no si se importa como un módulo)
+    if __name__ == '__main__':
+      # Manejo de error 404
+      app.register_error_handler(404, pagina_no_encontrada)
+      # Iniciamos el servidor Flask en modo de depuración (debug=True)
+      app.run(debug=True)
+aqui se ve como deberia quedar ordenado el proceso de error 404 y la ejecucion de la aplicacion
