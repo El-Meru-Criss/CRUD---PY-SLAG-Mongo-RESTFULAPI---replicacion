@@ -11,18 +11,25 @@
     <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
     <h1>{{ data.tabla }}</h1>
     
-    <!-- Comprobamos si hay nombres en la lista -->
+    <!-- Comprobamos si hay nombres en la tabla -->
     {% if data.numero_nombres > 0 %}
-    <!-- Si hay nombres, mostramos una lista no ordenada con los nombres -->
-    <ul>
+    <!-- Si hay nombres, mostramos una tabla no ordenada con los nombres -->
+    <table style="border: 10cm;">
+        <tr>
+            <th>nombres</th>
+        </tr>
+        
         {% for c in data.nombres %}
-        <li>
-            <!-- Mostramos cada nombre en un elemento de lista -->
-            {{ c }}
-        </li>
+            <tr>
+                <td>
+                <!-- Mostramos cada nombre en un elemento de la tabla-->
+                {{ c }}
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
-    <!-- Si no hay nombres en la lista, mostramos un mensaje -->
+        
+    </table>
+    <!-- Si no hay nombres en la tabla, mostramos un mensaje -->
     {% else %}
     <h2>No existen nombres</h2>
     {% endif %}
