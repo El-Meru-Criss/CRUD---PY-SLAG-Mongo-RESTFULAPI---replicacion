@@ -17,9 +17,9 @@ Con estos pasos realizados la base de datos esta lista para usarse.
 Para realizar modificaciones a la base de datos se requiere dar uso de los usuarios y contraseñas. Para crear usuarios debe dirigirse a:
   Database Access
 Y diligenciar el formulario de creacion. para el presente sistema se crearon los usuarios:
-  El-Meru-Criss
-  Mosquera
-  Steven
+      El-Meru-Criss
+      Mosquera
+      Steven
 
 <h2>Habilitar IPs</h2>
 Mongo cuenta con un sistema de validacion de IPs el cual consiste en registros de IPs publicas validas que pueden modificar la base de datos. Para registrar IPs se debe:
