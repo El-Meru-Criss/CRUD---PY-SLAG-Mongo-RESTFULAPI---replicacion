@@ -12,18 +12,18 @@
     <h1>{{ data.tabla }}</h1>
     
     <!-- Comprobamos si hay nombres en la tabla -->
-    {% if data.numero_nombres > 0 %}
+    {% if data.num_empleados > 0 %}
     <!-- Si hay nombres, mostramos una tabla no ordenada con los nombres -->
     <table style="border: 10cm;">
         <tr>
-            <th>nombres</th>
+            <th>empleados</th>
         </tr>
         
-        {% for c in data.nombres %}
+        {% for c in data.empleados %}
             <tr>
                 <td>
-                <!-- Mostramos cada nombre en un elemento de la tabla-->
-                {{ c }}
+                    <!-- Mostramos cada nombre en un elemento de la tabla-->
+                    {{ c['Nombre'] }}
                 </td>
             </tr>
         {% endfor %}
@@ -31,7 +31,7 @@
     </table>
     <!-- Si no hay nombres en la tabla, mostramos un mensaje -->
     {% else %}
-    <h2>No existen nombres</h2>
+        <h2>No existen empleados</h2>
     {% endif %}
 </body>
 </html>
