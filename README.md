@@ -104,3 +104,57 @@ Se inicia el servidor Flask en modo de depuración si el script se ejecuta direc
       # Iniciamos el servidor Flask en modo de depuración (debug=True)
       app.run(debug=True)
 aqui se ve como deberia quedar ordenado el proceso de error 404 y la ejecucion de la aplicacion
+
+<h2>render_template:</h2>
+
+El render_template es una función de Flask que se utiliza para renderizar plantillas HTML y pasarles datos dinámicos desde la aplicación Flask, hay que tomar encuenta que se crea la carpeta llamada templates ya que flask reconoce este nombre de manera automatica y no habria que especificar la ruta del archivo html, al menos que se cree una carpeta dentro de templates, aqui explico el codigo html que usamos:
+
+<h3>index</h3>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <!-- Definimos la codificación de caracteres y la escala inicial para dispositivos móviles -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- El título de la página se toma del diccionario 'data' que se pasa desde la aplicación Flask -->
+      <title>{{ data.titulo }}</title>
+    </head>
+    <body>
+      <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
+      <h1>{{ data.tabla }}</h1>
+    
+      <!-- Comprobamos si hay empleados en la tabla -->
+      {% if data.num_empleados > 0 %}
+      <!-- Si hay empleados, mostramos una tabla con los nombres -->
+      <table style="border: 10cm;">
+        <tr>
+            <th>Empleados</th> <!-- Encabezado de la columna de nombres -->
+        </tr>
+        
+        <!-- Iteramos sobre cada empleado en la lista de empleados -->
+        {% for empleado in data.empleados %}
+            <tr>
+                <td>
+                    <!-- Mostramos el nombre de cada empleado en un elemento de la tabla -->
+                    {{ empleado['Nombre'] }}
+                </td>
+            </tr>
+        {% endfor %}
+        
+      </table>
+      <!-- Si no hay empleados en la tabla, mostramos un mensaje -->
+    {% else %}
+      <h2>No existen empleados</h2>
+    {% endif %}
+    </body>
+    </html>
+    
+Comentarios detallados:
+
+{{ data.titulo }}: Renderiza el título de la página utilizando el valor proporcionado en el diccionario data desde la aplicación Flask.<br>
+{{ data.tabla }}: Muestra el nombre de la tabla, aunque este valor no está siendo utilizado en el código Python.
+{% if data.num_empleados > 0 %}: Verifica si hay empleados en la tabla utilizando el número de empleados proporcionado en el diccionario data.<br>
+{% for empleado in data.empleados %}: Itera sobre cada empleado en la lista de empleados obtenida desde la base de datos.<br>
+{{ empleado['Nombre'] }}: Muestra el nombre de cada empleado en un elemento de la tabla.<br>
+{% else %}: Se ejecuta si no hay empleados en la tabla, mostrando un mensaje indicando que no existen empleados.
