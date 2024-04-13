@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- El título de la página se toma del diccionario 'data' que se pasa desde la aplicación Flask -->
     <title>{{ data.titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}" >
 </head>
 <body>
+    <center>
     <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
     <h1>{{ data.tabla }}</h1>
     
@@ -33,5 +35,6 @@
     {% else %}
         <h2>No existen empleados</h2>
     {% endif %}
+    </center>
 </body>
 </html>
