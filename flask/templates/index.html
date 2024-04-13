@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Definimos la codificación de caracteres y la escala inicial para dispositivos móviles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El título de la página se toma del diccionario 'data' que se pasa desde la aplicación Flask -->
+    <title>{{ data.titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}" >
+</head>
+<body>
+    <center>
+    <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
+    <h1>{{ data.tabla }}</h1>
+
+    <button type="button" class="btn btn-primary">Crear Empleado</button>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- iniciamos un ciclo para mostrar los empleados -->
+            {% for c in data.empleados %} 
+                <tr>
+                    <th>ID</th>
+                    <td> {{ c['Nombre'] }} </td> <!-- Mostramos el nombre del empleado -->
+                    <td>
+                        <button type="button" class="btn btn-outline-info btn-sm">Edit</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm"> Borrar </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+    </center>
+</body>
+</html>
