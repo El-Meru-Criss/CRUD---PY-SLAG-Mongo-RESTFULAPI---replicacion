@@ -1,6 +1,7 @@
 # Importamos las clases Flask y render_template desde el paquete Flask
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, jsonify, request
 from pymongo import MongoClient
+
 
 # Datos de conexión a MongoDB
 usuario = "El-Meru-Criss"
@@ -15,6 +16,9 @@ url_conexion = f"mongodb+srv://{usuario}:{contraseña}@{host}/{nombre_bd}"
 # Crear una instancia de MongoClient y conectarse a la base de datos
 cliente = MongoClient(url_conexion)
 db = cliente[nombre_bd]
+
+# Obtener la colección de empleados
+empleados_collection = db["empleado"]
 
 # Creamos una instancia de la clase Flask y la asignamos a la variable 'app'
 app = Flask(__name__)
@@ -35,6 +39,41 @@ def index():
 
     # Renderizamos la plantilla HTML 'index.html' y pasamos el diccionario 'data' como contexto
     return render_template('index.html', data=data)
+
+@app.route('/empleados', methods=['POST'])
+def post_empleados():
+    # Recibir los datos del JSON de la solicitud
+    datos = request.get_json()
+
+    # Verificar si el campo 'Nombre' está presente en los datos recibidos
+    if 'Nombre' in datos:
+        nombre = datos['Nombre']
+
+        # Insertar el nuevo empleado en la colección de empleados
+        id = empleados_collection.insert_one({'Nombre': nombre}).inserted_id
+
+        # Crear la respuesta JSON con el ID generado y el nombre del empleado
+        response = {
+            'id': str(id),
+            'nombre': nombre
+        }
+
+        # Devolver la respuesta JSON
+        return jsonify(response)
+    else:
+        # Si no se proporciona el campo 'Nombre', devolver un mensaje de error
+        # return not_found()
+        return jsonify({'mensaje': 'Campo "Nombre" no proporcionado en la solicitud'}), 400
+        
+    
+@app.errorhandler(404)
+def not_found(error=None):
+    message = {
+        'mensaje': 'resource Not Fount: ' + request.url,
+        'status': 404
+    }
+
+    return message
 
 def pagina_no_encontrada(error):
     return redirect(url_for('index'))
