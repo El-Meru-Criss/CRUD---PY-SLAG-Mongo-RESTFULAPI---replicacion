@@ -70,3 +70,30 @@ Con el fin de mostrar las acciones basicas de insercion, edicion, visualizacion 
 
     # Segunda forma de eliminar todos los registros que coincidan con la cedula
     db["empleado"].delete_many({'Cedula': '1001'})
+
+<h2>Replicacion</h2>
+
+Mondodb Atlas ya crea por default un sistema de replicacion con 3 bases de datos, una es considerada como principal y las demas como secundarias. 
+Si la base de datos principal sufre un colapso, una base de datos secundaria tomara su puesto asi logrando la continuidad de la prestacion del servicio.
+
+Para verificar si la replicacion se encuentra activa debe conectarse a la base de datos remota con el shell de mongo.
+
+<ul>
+  <li>MongoDB Shell</li>
+  Para la instalacion del Shell se tomo directo de la pagina oficial de <a href="https://www.mongodb.com/try/download/shell">MongoDB</a>. Para el presente proyecto se usara la version 2.2.3 msi
+  <li>Conexion a la base de datos</li>
+  En la pagina de mongo en donde esta el cluster de la base de datos, procede a darle a conectar y elegir el metodo deseado. En este caso se usara el shell de mongo. 
+  Con la linea de comando proporcionada por mongo, procede a ejecutarla por medio de una consola CMD o PowerShell remplazando username con su usuario. luse de la siguiente manera:
+      
+      mongosh "mongodb+srv://pruebas-criss.neht1oe.mongodb.net/" --apiVersion 1 --username <username>
+
+  Posteriormente debe de proporcionar su contraseña para este usuario.
+
+  <li>Revisar estado de la replicacion</li>
+
+  Con la conexion realizada en la consola de comandos, se procede a ejecutar el comando:
+
+      rs.status()
+
+  Para ver el estado de la replicacion. Al ejecutarlo, debera de apreciarse la cantidad de bases de datos (por lo general 3) realizando la replicacion. En este registro se indica los IDs de las bases de dates he indica su gerarquia en la replicacion (secundarios y primario)
+</ul>
