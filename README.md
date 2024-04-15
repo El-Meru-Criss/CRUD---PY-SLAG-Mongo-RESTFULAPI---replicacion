@@ -193,6 +193,43 @@ Definimos una ruta principal / utilizando el decorador @app.route('/'). Cuando s
 
 asi es como queda la parte de la ruta princial en nuestra aplicacion
 
+<h2>Ruta del formulario /crear</h2>
+
+    @app.route('/crear')
+    def crear_empleado():
+      return render_template('crear.html')
+      
+Esta función decorada con @app.route('/crear') indica que se debe ejecutar cuando el usuario accede a la URL /crear. Luego, la función simplemente devuelve el contenido del archivo crear.html utilizando render_template, que es una función de Flask para renderizar plantillas HTML.
+
+<h2>Ruta del formulario editar /mostrar_formulario_actualizar/<id></h2>
+
+    @app.route('/actualizar/<id>', methods=['GET'])
+    def redirigir_a_actualizar(id):
+      return redirect(url_for('mostrar_formulario_actualizar', id=id))
+      
+Esta función maneja las solicitudes GET a la URL /actualizar/<id>, donde <id> es un parámetro dinámico en la URL que representa el ID único del empleado a actualizar. La función redirige la solicitud a la ruta mostrar_formulario_actualizar, pasando el ID como argumento.
+
+
+    @app.route('/mostrar_formulario_actualizar/<id>', methods=['GET'])
+    def mostrar_formulario_actualizar(id):
+      # Verificar si el ID es válido
+      if not ObjectId.is_valid(id):
+        # Si el ID no es válido, redirigir al índice
+        return redirect(url_for('index'))
+
+      # Obtener los datos del empleado con el ID proporcionado
+      empleado = empleados_collection.find_one({'_id': ObjectId(id)})
+    
+      # Verificar si se encontró el empleado con el ID proporcionado
+      if empleado:
+        # Renderizar el formulario de actualización y pasar los datos del empleado como contexto
+        return render_template('actualizar.html', empleado=empleado)
+      else:
+        # Si no se encuentra el empleado, redirigir a una página de error o a la página principal
+        return redirect(url_for('index'))
+        
+Esta función maneja las solicitudes GET a la URL /mostrar_formulario_actualizar/<id>, donde <id> es el ID del empleado a actualizar. Primero verifica si el ID es válido utilizando la función ObjectId.is_valid(id) (supongo que ObjectId viene de pymongo o una biblioteca similar para trabajar con MongoDB). Si el ID no es válido, redirige al usuario a la página principal (index). Luego, intenta obtener los datos del empleado con el ID proporcionado desde la colección de empleados (empleados_collection). Si encuentra al empleado, renderiza el formulario de actualización (actualizar.html) y pasa los datos del empleado como contexto al formulario. Si no encuentra al empleado, también redirige al usuario a la página principal (index).
+  
 <h2>Manejo de error 404:</h2>
 
     def pagina_no_encontrada(error):
