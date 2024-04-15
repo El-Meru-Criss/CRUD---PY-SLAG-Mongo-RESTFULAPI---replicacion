@@ -376,6 +376,96 @@ Comentarios detallados:
 {{ empleado['Nombre'] }}: Muestra el nombre de cada empleado en un elemento de la tabla.<br>
 {% else %}: Se ejecuta si no hay empleados en la tabla, mostrando un mensaje indicando que no existen empleados.
 
+<h3>crear</h3>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <!-- Definimos la codificación de caracteres y la escala inicial para dispositivos móviles -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Crear Empleado</title>
+    </head>
+    
+Se inicia el documento HTML con la declaración <!DOCTYPE html> y se establecen metadatos como la codificación de caracteres y la escala inicial para dispositivos móviles en la sección <head>. El título de la página se establece como "Crear Empleado".
+
+    <body>
+      <h1>Crear Empleado</h1>
+      <form id="createForm">
+        <!-- Etiqueta y campo de entrada para el nombre del empleado -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br><br>
+        <!-- Botón para enviar el formulario y crear el empleado -->
+        <button type="submit">Crear Empleado</button>
+        <!-- Botón para volver al índice -->
+        <button id="redirectBtn" type="button" class="btn btn-primary">Volver al Índice</button>
+      </form>
+
+      <!-- Div para mostrar la respuesta de la creación del empleado -->
+      <div id="response"></div>
+      
+En el cuerpo del HTML, se encuentra el contenido principal de la página. Hay un encabezado que indica "Crear Empleado". Luego, hay un formulario con ID "createForm" que permite al usuario ingresar el nombre del empleado. El formulario tiene un botón de tipo "submit" para enviar los datos y crear el empleado. También hay un botón con ID "redirectBtn" para volver al índice de la aplicación Flask. Además, hay un div con ID "response" que se utilizará para mostrar la respuesta de la creación del empleado.
+
+    <script>
+      // Obtener el formulario y el div de respuesta por su ID
+      const form = document.getElementById('createForm');
+      const responseDiv = document.getElementById('response');
+
+      // Agregar un evento 'submit' al formulario
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault(); // Evitar el comportamiento por defecto del formulario
+
+        // Obtener el valor del nombre del empleado
+        const nombre = document.getElementById('nombre').value;
+
+        try {
+            // Realizar una solicitud POST a la API para crear un nuevo empleado
+            const response = await fetch('/empleados', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Nombre: nombre }) // Enviar el nombre del empleado en formato JSON
+            });
+
+            // Obtener la respuesta en formato JSON
+            const data = await response.json();
+            // Mostrar la respuesta en el div de respuesta
+            responseDiv.innerHTML = JSON.stringify(data, null, 2);
+
+            // Redirigir al usuario a la página principal después de la creación
+            window.location.href = '/';
+        } catch (error) {
+            // Mostrar un mensaje de error en el div de respuesta en caso de error
+            responseDiv.innerHTML = JSON.stringify({ error: 'Error al realizar la solicitud' }, null, 2);
+        }
+      });
+
+      // Función para redirigir al índice al hacer clic en el botón 'Volver al Índice'
+      function redirectToIndex() {
+        window.location.href = '/';  // Cambia '/' a la ruta del índice de tu aplicación Flask si es diferente
+      }
+
+      // Agregar un evento 'click' al botón y llamar a la función de redirección
+      document.getElementById('redirectBtn').addEventListener('click', redirectToIndex);
+    </script>
+Este script JavaScript maneja la lógica de la página de creación de empleados:
+<ul>
+    <li>Obtiene el formulario y el div de respuesta por sus IDs.</li>
+    <li>Agrega un evento 'submit' al formulario para capturar el envío de datos.</li>
+    <li>Dentro del evento 'submit':</li>
+    <ul>
+      <li>Evita el comportamiento por defecto del formulario.</li>
+      <li>Obtiene el valor del nombre del empleado del campo de entrada.</li>
+      <li>Realiza una solicitud POST a la API de Flask para crear un nuevo empleado, enviando el nombre del empleado en formato JSON.</li>
+      <li>Muestra la respuesta de la creación del empleado en el div de respuesta.</li>
+      <li>Redirige al usuario a la página principal después de la creación del empleado.</li>
+    </ul>
+    <li>Define una función redirectToIndex para redirigir al índice al hacer clic en el botón "Volver al Índice".</li>
+    <li>Agrega un evento 'click' al botón "Volver al Índice" para llamar a la función de redirección cuando se hace clic en él.</li>
+</ul>
   
 <h2>References</h2>
 Azabache, G. (2021, September 1). Qué es REST, RESTFul, API RESTFul y JSON. Brave Developer. Retrieved April 5, 2024, from https://bravedeveloper.com/2021/09/01/que-es-rest-restful-api-restful-y-json/<br>
