@@ -273,36 +273,96 @@ El render_template es una función de Flask que se utiliza para renderizar plant
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- El título de la página se toma del diccionario 'data' que se pasa desde la aplicación Flask -->
       <title>{{ data.titulo }}</title>
+      <!-- Enlaces a archivos CSS y Bootstrap -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}" >
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}" >
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     </head>
-    <body>
-      <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
-      <h1>{{ data.tabla }}</h1>
     
-      <!-- Comprobamos si hay empleados en la tabla -->
-      {% if data.num_empleados > 0 %}
-      <!-- Si hay empleados, mostramos una tabla con los nombres -->
-      <table style="border: 10cm;">
-        <tr>
-            <th>Empleados</th> <!-- Encabezado de la columna de nombres -->
-        </tr>
-        
-        <!-- Iteramos sobre cada empleado en la lista de empleados -->
-        {% for empleado in data.empleados %}
-            <tr>
-                <td>
-                    <!-- Mostramos el nombre de cada empleado en un elemento de la tabla -->
-                    {{ empleado['Nombre'] }}
-                </td>
-            </tr>
-        {% endfor %}
-        
-      </table>
-      <!-- Si no hay empleados en la tabla, mostramos un mensaje -->
-    {% else %}
-      <h2>No existen empleados</h2>
-    {% endif %}
+Aquí se establece la estructura básica de un documento HTML, se configura la codificación de caracteres, la escala inicial para dispositivos móviles y se enlazan archivos CSS y la librería Bootstrap para el estilo de la página.
+
+    <body>
+      <center>
+        <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
+        <h1>{{ data.tabla }}</h1>
+        <!-- Botón para crear un nuevo empleado -->
+        <button type="button" class="btn btn-primary" onclick="redirectToCrear()">Crear Empleado</button>
+        <!-- Tabla para mostrar los empleados -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Iniciamos un ciclo para mostrar los empleados -->
+              {% for c in data.empleados %} 
+                <tr>
+                  <th>{{ loop.index }}</th> <!-- Utiliza loop.index para obtener el índice de la iteración -->
+                    <td>{{ c['Nombre'] }}</td> <!-- Muestra el nombre del empleado -->
+                    <td>
+                      <!-- Enlace para redirigir a la página de actualización -->
+                      <a href="{{ url_for('redirigir_a_actualizar', id=c['_id']) }}" class="btn btn-outline-info btn-sm">
+                        <i class="bi bi-pencil"></i> Editar 
+                      </a>
+                      <!-- Botón para eliminar un empleado -->
+                      <button type="button" class="btn btn-outline-danger btn-sm" id="{{ c._id }}">
+                        <i class="bi bi-trash"></i> Borrar
+                      </button>
+                    </td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </center>
+
+    <!-- Script para manejar el evento de click en los botones de eliminación -->
+    <script>
+        // JavaScript code...
+    </script>
     </body>
     </html>
+Dentro del cuerpo del HTML, se muestra el nombre de la tabla (aunque parece que no se está utilizando actualmente en el código Python), se incluye un botón para crear un nuevo empleado y se genera una tabla para mostrar la lista de empleados. Para cada empleado en la lista, se genera una fila en la tabla que muestra el índice, el nombre del empleado y dos opciones: editar y borrar.
+
+    <!-- Script para manejar el evento de click en los botones de eliminación -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.btn-outline-danger');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', async function () {
+                const id = this.getAttribute('id');
+
+                // Mostrar mensaje de confirmación
+                const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este empleado?');
+
+                if (confirmed) {
+                    try {
+                        const response = await fetch(`/empleados/${id}`, {
+                            method: 'DELETE'
+                        });
+
+                        const data = await response.json();
+                        // Manejar la respuesta de la API DELETE según sea necesario
+                        console.log(data);
+                        // Refrescar la página después de eliminar el empleado
+                        window.location.reload();
+                    } catch (error) {
+                        console.error('Error al eliminar empleado:', error);
+                    }
+                }
+            });
+        });
+      });
+
+      // Función para redirigir a la página de creación de empleado
+      function redirectToCrear() {
+        window.location.href = '/crear';  // Cambiar a la ruta de Flask que deseas (/crear en este caso)
+      }
+    </script>
+Este script JavaScript maneja el evento de clic en los botones de eliminación. Cuando se hace clic en uno de esos botones, muestra un mensaje de confirmación y, si se confirma, envía una solicitud DELETE al servidor para eliminar al empleado correspondiente. Luego, recarga la página para mostrar la lista actualizada de empleados. Además, hay una función redirectToCrear que redirige al usuario a la página de creación de empleado.
     
 Comentarios detallados:
 
@@ -310,6 +370,9 @@ Comentarios detallados:
 {{ data.tabla }}: Muestra el nombre de la tabla, aunque este valor no está siendo utilizado en el código Python.
 {% if data.num_empleados > 0 %}: Verifica si hay empleados en la tabla utilizando el número de empleados proporcionado en el diccionario data.<br>
 {% for empleado in data.empleados %}: Itera sobre cada empleado en la lista de empleados obtenida desde la base de datos.<br>
+{{ loop.index }}: agrega loop.index para obtener el índice de la iteración.<br>
+{{ c.['_id']  }}: agrega el valor del id correspondiente al hipervinculo.<br>
+{{ c._id  }}: agrega el valor del id correspondiente al boton.<br>
 {{ empleado['Nombre'] }}: Muestra el nombre de cada empleado en un elemento de la tabla.<br>
 {% else %}: Se ejecuta si no hay empleados en la tabla, mostrando un mensaje indicando que no existen empleados.
 
