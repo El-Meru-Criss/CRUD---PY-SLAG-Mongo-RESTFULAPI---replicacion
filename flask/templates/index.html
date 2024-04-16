@@ -6,16 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- El título de la página se toma del diccionario 'data' que se pasa desde la aplicación Flask -->
     <title>{{ data.titulo }}</title>
+    <!-- Enlaces a archivos CSS y Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}" >
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <center>
     <!-- Mostramos el nombre de la tabla, aunque en el código Python no se está usando -->
     <h1>{{ data.tabla }}</h1>
 
-    <button type="button" class="btn btn-primary">Crear Empleado</button>
+    <!-- Botón para crear un nuevo empleado -->
+    <button type="button" class="btn btn-primary" onclick="redirectToCrear()">Crear Empleado</button>
 
+    <!-- Tabla para mostrar los empleados -->
     <table class="table">
         <thead>
           <tr>
@@ -25,14 +29,20 @@
           </tr>
         </thead>
         <tbody>
-            <!-- iniciamos un ciclo para mostrar los empleados -->
+            <!-- Iniciamos un ciclo para mostrar los empleados -->
             {% for c in data.empleados %} 
                 <tr>
-                    <th>ID</th>
-                    <td> {{ c['Nombre'] }} </td> <!-- Mostramos el nombre del empleado -->
+                    <th>{{ loop.index }}</th> <!-- Utiliza loop.index para obtener el índice de la iteración -->
+                    <td>{{ c['Nombre'] }}</td> <!-- Muestra el nombre del empleado -->
                     <td>
-                        <button type="button" class="btn btn-outline-info btn-sm">Edit</button>
-                        <button type="button" class="btn btn-outline-danger btn-sm"> Borrar </button>
+                        <!-- Enlace para redirigir a la página de actualización -->
+                        <a href="{{ url_for('redirigir_a_actualizar', id=c['_id']) }}" class="btn btn-outline-info btn-sm">
+                            <i class="bi bi-pencil"></i> Editar 
+                        </a>
+                        <!-- Botón para eliminar un empleado -->
+                        <button type="button" class="btn btn-outline-danger btn-sm" id="{{ c._id }}">
+                            <i class="bi bi-trash"></i> Borrar
+                        </button>
                     </td>
                 </tr>
             {% endfor %}
@@ -40,5 +50,42 @@
       </table>
 
     </center>
+
+    <!-- Script para manejar el evento de click en los botones de eliminación -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.btn-outline-danger');
+    
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async function () {
+                    const id = this.getAttribute('id');
+    
+                    // Mostrar mensaje de confirmación
+                    const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este empleado?');
+    
+                    if (confirmed) {
+                        try {
+                            const response = await fetch(`/empleados/${id}`, {
+                                method: 'DELETE'
+                            });
+    
+                            const data = await response.json();
+                            // Manejar la respuesta de la API DELETE según sea necesario
+                            console.log(data);
+                            // Refrescar la página después de eliminar el empleado
+                            window.location.reload();
+                        } catch (error) {
+                            console.error('Error al eliminar empleado:', error);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Función para redirigir a la página de creación de empleado
+        function redirectToCrear() {
+            window.location.href = '/crear';  // Cambiar a la ruta de Flask que deseas (/crear en este caso)
+        }
+    </script>
 </body>
 </html>
