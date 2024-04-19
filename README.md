@@ -121,7 +121,18 @@ Se usa el controlador de error de cabesera errorhandler(404), se define not_foun
         return response
 <h1>Pruebas en Postman</h1><br>
 <h2>Mostrar todos GET</h2>
-![MostrarTodos]([https://github.com/El-Meru-Criss/CRUD---PY-SLAG-Mongo-RESTFULAPI---replicacion/blob/Stev/imgs_postman/postman_actualizar.jpeg](https://github.com/El-Meru-Criss/CRUD---PY-SLAG-Mongo-RESTFULAPI---replicacion/blob/Stev/imgs_postman/postman_mostrartodos.jpeg))
+
+![MostrarTodos](imgs_postman/postman_mostrartodos.jpeg)
 <h2>Mostrar uno GET</h2>
+
 ![Mostraruno](imgs_postman/postman_mostraruno.jpeg)
+<h2>Crear uno Post</h2>
+
+![Crear](imgs_postman/postman_crear.jpeg)
+<h2>Actualizar uno PUT</h2>
+
+![Actualizar](imgs_postman/postman_actualizar.jpeg)
+<h2>Eliminar uno DELETE</h2>
+
+![Eliminar](imgs_postman/postman_eliminar.jpeg)
 </center> 
