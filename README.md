@@ -119,4 +119,9 @@ Se usa el controlador de error de cabesera errorhandler(404), se define not_foun
         })
         response.status_code = 404
         return response
+<h1>Pruebas en Postman</h1><br>
+<h2>Mostrar todos GET</h2>
+![MostrarTodos]([https://github.com/El-Meru-Criss/CRUD---PY-SLAG-Mongo-RESTFULAPI---replicacion/blob/Stev/imgs_postman/postman_actualizar.jpeg](https://github.com/El-Meru-Criss/CRUD---PY-SLAG-Mongo-RESTFULAPI---replicacion/blob/Stev/imgs_postman/postman_mostrartodos.jpeg))
+<h2>Mostrar uno GET</h2>
+![Mostraruno](imgs_postman/postman_mostraruno.jpeg)
 </center> 
