@@ -135,4 +135,11 @@ Se usa el controlador de error de cabesera errorhandler(404), se define not_foun
 <h2>Eliminar uno DELETE</h2>
 
 ![Eliminar](imgs_postman/postman_eliminar.jpeg)
+<h1>Uso de REST en las API y que las hace una APIRESTFUL</h1>
+El enfoque REST se basa en principios simples y utiliza el protocolo HTTP para realizar operaciones sobre recursos identificados por URLs; este código sigue el enfoque REST al utilizar URLs para identificar recursos, métodos HTTP para definir operaciones sobre esos recursos y formatos de datos estándar (como JSON) para representar los datos. Esto hace que la API sea RESTful porque sigue los principios de REST para diseñar servicios web.
+<h2>operaciones CRUD (Crear, Leer, Actualizar, Eliminar) se implementan utilizando los métodos HTTP estándar</h2>
+POST crea un nuevo empleado.<br>
+GET obtiene todos los empleados o un empleado específico por su ID.<br>
+DELETE elimina un empleado por su ID.<br>
+PUT actualiza un empleado por su ID.<br>
 </center> 
