@@ -128,6 +128,22 @@ Para verificar si la replicacion se encuentra activa debe conectarse a la base d
 
 </ul>
 
+<h2>Pruebas de Replicaion</h2>
+
+Con el fin de poner a prueba la replicacion, se intento forzar la replicacion primaria para que seda su puesto a las demas secundarias, durante esta etapa se hayo que:
+
+<h3>Limitaciones del cluster</h3>
+
+Gracias a que el presente proyecto usa un Cluster gratis (M0) muchos comandos de administracion estan desahabilitados asi como lo relata este <a href="https://www.mongodb.com/docs/atlas/unsupported-commands/">ARTICULO</a>
+
+<h3>Soporte de OverLoad</h3>
+
+Al ver que no era posible seder el puesto de la replicacion primario por medio de comandos, se intento inducir un ataque a la base de datos para sobrecargar la primaria y que una secundaria tomara su puesto. Se intento por medio de un ciclo:
+      
+      While
+
+En el cual se realizaban inserciones sucesivas, pero al llevarlo a cabo la maquina atacante (Un PC de mesa Viejo) murio primero la maquina atacante que la base de datos. Por lo cual se encuentra que su soporte a sobrecarga es bueno
+
 <h2>instalamos las librerias para Flask</h2>
 
     pip install flask
