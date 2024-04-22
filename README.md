@@ -98,7 +98,12 @@ Con el fin de mostrar las acciones basicas de insercion, edicion, visualizacion 
 <h2>Replicacion</h2>
 
 Mondodb Atlas ya crea por default un sistema de replicacion con 3 bases de datos, una es considerada como principal y las demas como secundarias. 
-Si la base de datos principal sufre un colapso, una base de datos secundaria tomara su puesto asi logrando la continuidad de la prestacion del servicio.
+Si la base de datos principal sufre un colapso, una base de datos secundaria tomara su puesto asi logrando la continuidad de la prestacion del servicio. Esta replicacion es visible en la GUI de la pagina de MongoDB Atlas en:
+
+    Databasses > NombreDelCluster > Overview
+
+En el se puede visualizar la cantidad de replicas existentes y su jerarquia. Mas sin embargo solo es posible hacer cambios avanzados por medio del Mongo Shell.
+ <br>
 
 Para verificar si la replicacion se encuentra activa debe conectarse a la base de datos remota con el shell de mongo.
 
@@ -120,6 +125,7 @@ Para verificar si la replicacion se encuentra activa debe conectarse a la base d
       rs.status()
 
   Para ver el estado de la replicacion. Al ejecutarlo, debera de apreciarse la cantidad de bases de datos (por lo general 3) realizando la replicacion. En este registro se indica los IDs de las bases de dates he indica su gerarquia en la replicacion (secundarios y primario)
+
 </ul>
 
 <h2>instalamos las librerias para Flask</h2>
