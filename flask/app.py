@@ -166,4 +166,4 @@ if __name__ == '__main__':
     # Manejo de error 404
     app.register_error_handler(404, pagina_no_encontrada)
     # Iniciamos el servidor Flask en modo de depuración (debug=True)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
